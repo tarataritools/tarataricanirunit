@@ -1,0 +1,12 @@
+{
+  "version": "0.1",
+  "games": [
+    "games/game-edition-1.json"
+  ],
+  "cpus": [
+    "cpus/cpu-edition-1.json"
+  ],
+  "gpus": [
+    "gpus/gpu-edition-1.json"
+  ]
+}
