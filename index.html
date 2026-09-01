@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        /* ── Compact styles (same as before) ── */
+        /* ── Same styles as before, plus new search dropdown ── */
         * { margin:0; padding:0; box-sizing:border-box; }
         :root { --bg: #0d1a0d; --surface: #152015; --surface2: #1e2b1e; --surface3: #2a3d2a; --border: #2f4a2f; --text: #dff0df; --text-dim: #8aaa8a; --green: #4caf50; --green-dark: #2e7d32; --green-light: #66bb6a; --accent: #66bb6a; --red: #ef5350; --yellow: #ffca28; --radius: 12px; --shadow: 0 8px 24px rgba(0,0,0,0.6); --transition: 0.2s ease; }
         html { font-size:16px; scroll-behavior:smooth; }
@@ -68,12 +68,11 @@
         @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
         .modal-step h2 { font-size:1.5rem; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
         .modal-step p { color:var(--text-dim); margin-bottom:20px; font-size:0.95rem; }
-        .form-group { margin-bottom:18px; }
+        .form-group { margin-bottom:18px; position:relative; }
         .form-group label { display:block; font-size:0.85rem; font-weight:500; color:var(--text-dim); margin-bottom:4px; }
         .form-group input, .form-group select { width:100%; padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.95rem; font-family:inherit; transition:border-color var(--transition); }
         .form-group input:focus, .form-group select:focus { outline:none; border-color:var(--green); }
         .form-group input::placeholder { color:var(--text-dim); opacity:0.6; }
-        .form-group datalist { display:none; }
         .form-hint { font-size:0.75rem; color:var(--text-dim); margin-top:4px; }
         .step-actions { display:flex; justify-content:space-between; gap:12px; margin-top:24px; flex-wrap:wrap; }
         .step-actions .btn { flex:1; min-width:100px; }
@@ -84,8 +83,39 @@
         .modal-loading { text-align:center; padding:40px 0; color:var(--text-dim); }
         .modal-loading .spinner { width:2.5rem; height:2.5rem; border-width:4px; margin-bottom:16px; }
         .modal-error { text-align:center; padding:40px 20px; color:var(--red); }
-        .modal-error .spinner { display:none; }
         .modal-error .detail { font-size:0.85rem; color:var(--text-dim); margin-top:8px; }
+
+        /* ── Custom search dropdown ── */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+            box-shadow: var(--shadow);
+        }
+        .search-suggestions.active {
+            display: block;
+        }
+        .search-suggestions .suggestion-item {
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+        .search-suggestions .suggestion-item:hover {
+            background: var(--surface3);
+        }
+        .search-suggestions .suggestion-item .highlight {
+            font-weight: 700;
+            color: var(--green-light);
+        }
+
         @media (max-width:600px) { .intro-content h1 { font-size:2.2rem; } .game-grid { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); padding:16px; gap:14px; } .modal-content { padding:20px 16px; } .header { padding:12px 16px; } .logo { font-size:1rem; } .spec-badge { font-size:0.75rem; padding:4px 12px; } }
     </style>
 </head>
@@ -168,8 +198,8 @@
                 <p>Start typing to search from our database.</p>
                 <div class="form-group">
                     <label for="cpuSearch">CPU</label>
-                    <input type="text" id="cpuSearch" placeholder="e.g. Intel i5-4570" list="cpuSuggestions" autocomplete="off" />
-                    <datalist id="cpuSuggestions"></datalist>
+                    <input type="text" id="cpuSearch" placeholder="e.g. Intel i5-4570" autocomplete="off" />
+                    <div id="cpuSuggestions" class="search-suggestions"></div>
                     <div class="form-hint">We have thousands of common CPUs.</div>
                 </div>
                 <a href="https://tally.so/r/XxbYgd" target="_blank" class="external-link">
@@ -206,8 +236,8 @@
                 </div>
                 <div class="form-group">
                     <label for="gpuSearch">GPU (optional)</label>
-                    <input type="text" id="gpuSearch" placeholder="e.g. NVIDIA GTX 1060" list="gpuSuggestions" autocomplete="off" />
-                    <datalist id="gpuSuggestions"></datalist>
+                    <input type="text" id="gpuSearch" placeholder="e.g. NVIDIA GTX 1060" autocomplete="off" />
+                    <div id="gpuSuggestions" class="search-suggestions"></div>
                     <div class="form-hint">If you have a dedicated graphics card.</div>
                 </div>
                 <div class="step-actions">
@@ -249,7 +279,7 @@
 
     <script>
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        //  TaraTari – Full error handling & logging
+        //  TaraTari – with custom search dropdown
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         (() => {
@@ -347,7 +377,7 @@
                             }
                         } catch (e) {
                             console.error(`❌ Error processing ${path}:`, e);
-                            throw e; // Re-throw to stop the process
+                            throw e;
                         }
                     }
                     const gameMap = new Map();
@@ -362,7 +392,7 @@
                     state.games = gameMap;
                     console.log(`✅ Total games loaded: ${state.games.size}`);
 
-                    // Load CPUs (similar error handling)
+                    // Load CPUs
                     const cpuEditions = index.cpus || [];
                     const cpuMap = new Map();
                     const cpuAliasMap = new Map();
@@ -479,6 +509,106 @@
                 dom.errorDetail.textContent = msg;
                 dom.modalSteps.forEach(el => el.classList.remove('active'));
                 dom.modalError.classList.add('active');
+            }
+
+            // ── Custom search dropdown helper ──
+            function setupSearch(inputEl, suggestionsEl, dataMap, onSelect) {
+                let currentFocus = -1;
+
+                function showSuggestions(filter) {
+                    const filterLower = filter.toLowerCase();
+                    const matches = [];
+                    for (const [id, rec] of dataMap) {
+                        const name = rec.name || '';
+                        if (name.toLowerCase().includes(filterLower)) {
+                            matches.push(name);
+                        }
+                    }
+                    // Limit to 20
+                    matches.sort();
+                    const limited = matches.slice(0, 20);
+                    if (limited.length === 0 || filter === '') {
+                        suggestionsEl.classList.remove('active');
+                        return;
+                    }
+                    suggestionsEl.innerHTML = limited.map(name => {
+                        const idx = name.toLowerCase().indexOf(filterLower);
+                        let highlighted = name;
+                        if (idx !== -1) {
+                            const before = name.substring(0, idx);
+                            const match = name.substring(idx, idx + filter.length);
+                            const after = name.substring(idx + filter.length);
+                            highlighted = `${before}<span class="highlight">${match}</span>${after}`;
+                        }
+                        return `<div class="suggestion-item" data-value="${name}">${highlighted}</div>`;
+                    }).join('');
+                    suggestionsEl.classList.add('active');
+
+                    // Click handler
+                    suggestionsEl.querySelectorAll('.suggestion-item').forEach(el => {
+                        el.addEventListener('mousedown', (e) => {
+                            e.preventDefault(); // prevent blur
+                            const val = el.dataset.value;
+                            inputEl.value = val;
+                            suggestionsEl.classList.remove('active');
+                            if (onSelect) onSelect(val);
+                        });
+                    });
+                }
+
+                inputEl.addEventListener('input', function(e) {
+                    const val = this.value;
+                    showSuggestions(val);
+                });
+
+                inputEl.addEventListener('blur', function(e) {
+                    // Small delay to allow click on suggestion
+                    setTimeout(() => {
+                        suggestionsEl.classList.remove('active');
+                    }, 150);
+                });
+
+                inputEl.addEventListener('keydown', function(e) {
+                    const items = suggestionsEl.querySelectorAll('.suggestion-item');
+                    if (items.length === 0) return;
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        currentFocus = Math.min(currentFocus + 1, items.length - 1);
+                        updateFocus(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        currentFocus = Math.max(currentFocus - 1, 0);
+                        updateFocus(items);
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (currentFocus >= 0 && currentFocus < items.length) {
+                            const val = items[currentFocus].dataset.value;
+                            inputEl.value = val;
+                            suggestionsEl.classList.remove('active');
+                            if (onSelect) onSelect(val);
+                        }
+                    }
+                });
+
+                function updateFocus(items) {
+                    items.forEach((el, idx) => {
+                        el.style.background = idx === currentFocus ? 'var(--surface3)' : '';
+                    });
+                }
+
+                // Also close on escape
+                inputEl.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        suggestionsEl.classList.remove('active');
+                    }
+                });
+
+                // Click outside to close
+                document.addEventListener('click', function(e) {
+                    if (!inputEl.contains(e.target) && !suggestionsEl.contains(e.target)) {
+                        suggestionsEl.classList.remove('active');
+                    }
+                });
             }
 
             // ── Hardware resolution (unchanged) ──
@@ -688,7 +818,9 @@
                     if (!state.loading && !state.loadError) {
                         loadDatabase().then(() => {
                             if (state.loaded) {
-                                populateSuggestions();
+                                // Set up search after data is loaded
+                                setupSearch(dom.cpuSearch, dom.cpuSuggestions, state.cpus);
+                                setupSearch(dom.gpuSearch, dom.gpuSuggestions, state.gpus);
                                 dom.modalSteps.forEach(el => el.classList.remove('active'));
                                 document.querySelector(`.modal-step[data-step="${step}"]`)?.classList.add('active');
                             }
@@ -698,44 +830,15 @@
                     }
                     return;
                 }
-                populateSuggestions();
+                // Already loaded – ensure search is set up
+                setupSearch(dom.cpuSearch, dom.cpuSuggestions, state.cpus);
+                setupSearch(dom.gpuSearch, dom.gpuSuggestions, state.gpus);
                 dom.modalSteps.forEach(el => el.classList.remove('active'));
                 document.querySelector(`.modal-step[data-step="${step}"]`)?.classList.add('active');
             }
 
             function closeModal() {
                 dom.specModal.classList.remove('active');
-            }
-
-            function populateSuggestions() {
-                const cpuDatalist = dom.cpuSuggestions;
-                cpuDatalist.innerHTML = '';
-                const cpuSet = new Set();
-                for (const [id, rec] of state.cpus) {
-                    if (rec.name) {
-                        const val = rec.name;
-                        if (!cpuSet.has(val)) {
-                            cpuSet.add(val);
-                            const opt = document.createElement('option');
-                            opt.value = val;
-                            cpuDatalist.appendChild(opt);
-                        }
-                    }
-                }
-                const gpuDatalist = dom.gpuSuggestions;
-                gpuDatalist.innerHTML = '';
-                const gpuSet = new Set();
-                for (const [id, rec] of state.gpus) {
-                    if (rec.name) {
-                        const val = rec.name;
-                        if (!gpuSet.has(val)) {
-                            gpuSet.add(val);
-                            const opt = document.createElement('option');
-                            opt.value = val;
-                            gpuDatalist.appendChild(opt);
-                        }
-                    }
-                }
             }
 
             function updateSummary() {
