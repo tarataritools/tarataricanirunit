@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        /* ── all styles unchanged, same as previous ── */
-        /* (I'll keep them compact to save space) */
+        /* ── Compact styles (same as before) ── */
         * { margin:0; padding:0; box-sizing:border-box; }
         :root { --bg: #0d1a0d; --surface: #152015; --surface2: #1e2b1e; --surface3: #2a3d2a; --border: #2f4a2f; --text: #dff0df; --text-dim: #8aaa8a; --green: #4caf50; --green-dark: #2e7d32; --green-light: #66bb6a; --accent: #66bb6a; --red: #ef5350; --yellow: #ffca28; --radius: 12px; --shadow: 0 8px 24px rgba(0,0,0,0.6); --transition: 0.2s ease; }
         html { font-size:16px; scroll-behavior:smooth; }
@@ -58,6 +57,7 @@
         .game-status.unknown { color:var(--text-dim); background:rgba(255,255,255,0.05); }
         .no-specs-msg { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-dim); font-size:1.2rem; }
         .loading-grid { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-dim); }
+        .error-grid { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--red); }
         #specModal { position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:20px; }
         #specModal.active { display:flex; }
         .modal-content { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); max-width:500px; width:100%; padding:30px 28px; box-shadow:var(--shadow); position:relative; max-height:90vh; overflow-y:auto; }
@@ -85,6 +85,7 @@
         .modal-loading .spinner { width:2.5rem; height:2.5rem; border-width:4px; margin-bottom:16px; }
         .modal-error { text-align:center; padding:40px 20px; color:var(--red); }
         .modal-error .spinner { display:none; }
+        .modal-error .detail { font-size:0.85rem; color:var(--text-dim); margin-top:8px; }
         @media (max-width:600px) { .intro-content h1 { font-size:2.2rem; } .game-grid { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); padding:16px; gap:14px; } .modal-content { padding:20px 16px; } .header { padding:12px 16px; } .logo { font-size:1rem; } .spec-badge { font-size:0.75rem; padding:4px 12px; } }
     </style>
 </head>
@@ -153,7 +154,7 @@
             <div id="modalError" class="modal-step" data-step="-1">
                 <div class="modal-error">
                     <p>⚠️ Failed to load database.</p>
-                    <p style="font-size:0.85rem; margin-top:8px;" id="errorDetail">Check the console for details.</p>
+                    <p class="detail" id="errorDetail">Check the console for details.</p>
                     <button class="btn btn-outline" style="margin-top:16px;" onclick="location.reload()">Refresh</button>
                 </div>
             </div>
@@ -248,7 +249,7 @@
 
     <script>
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        //  TaraTari – with full error handling & logging
+        //  TaraTari – Full error handling & logging
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         (() => {
@@ -306,7 +307,7 @@
                 return parseFloat(dom.ramSelect.value) || 8;
             }
 
-            // ── Database loader with error handling ──
+            // ── Database loader with FULL error handling ──
             async function loadDatabase() {
                 if (state.loaded) return;
                 if (state.loading) return;
@@ -332,18 +333,21 @@
                         try {
                             const resp = await fetch(`./${path}`);
                             if (!resp.ok) {
-                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
-                                continue;
+                                throw new Error(`HTTP ${resp.status} for ${path}`);
                             }
                             const data = await resp.json();
-                            if (data.records) {
+                            if (data.records && Array.isArray(data.records)) {
                                 for (const rec of data.records) {
                                     rec._edition = data.edition || 0;
                                     rawGames.push(rec);
                                 }
+                                console.log(`✅ Loaded ${data.records.length} games from ${path}`);
+                            } else {
+                                throw new Error(`Missing "records" array in ${path}`);
                             }
                         } catch (e) {
-                            console.warn(`⚠️ Error loading ${path}:`, e);
+                            console.error(`❌ Error processing ${path}:`, e);
+                            throw e; // Re-throw to stop the process
                         }
                     }
                     const gameMap = new Map();
@@ -356,9 +360,9 @@
                         }
                     }
                     state.games = gameMap;
-                    console.log(`✅ Loaded ${state.games.size} games`);
+                    console.log(`✅ Total games loaded: ${state.games.size}`);
 
-                    // Load CPUs
+                    // Load CPUs (similar error handling)
                     const cpuEditions = index.cpus || [];
                     const cpuMap = new Map();
                     const cpuAliasMap = new Map();
@@ -366,11 +370,10 @@
                         try {
                             const resp = await fetch(`./${path}`);
                             if (!resp.ok) {
-                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
-                                continue;
+                                throw new Error(`HTTP ${resp.status} for ${path}`);
                             }
                             const data = await resp.json();
-                            if (data.records) {
+                            if (data.records && Array.isArray(data.records)) {
                                 for (const rec of data.records) {
                                     if (!rec.id) continue;
                                     const existing = cpuMap.get(rec.id);
@@ -393,14 +396,17 @@
                                         }
                                     }
                                 }
+                            } else {
+                                throw new Error(`Missing "records" array in ${path}`);
                             }
                         } catch (e) {
-                            console.warn(`⚠️ Error loading ${path}:`, e);
+                            console.error(`❌ Error processing ${path}:`, e);
+                            throw e;
                         }
                     }
                     state.cpus = cpuMap;
                     state.cpuAliases = cpuAliasMap;
-                    console.log(`✅ Loaded ${state.cpus.size} CPUs`);
+                    console.log(`✅ Total CPUs loaded: ${state.cpus.size}`);
 
                     // Load GPUs
                     const gpuEditions = index.gpus || [];
@@ -410,11 +416,10 @@
                         try {
                             const resp = await fetch(`./${path}`);
                             if (!resp.ok) {
-                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
-                                continue;
+                                throw new Error(`HTTP ${resp.status} for ${path}`);
                             }
                             const data = await resp.json();
-                            if (data.records) {
+                            if (data.records && Array.isArray(data.records)) {
                                 for (const rec of data.records) {
                                     if (!rec.id) continue;
                                     const existing = gpuMap.get(rec.id);
@@ -437,27 +442,36 @@
                                         }
                                     }
                                 }
+                            } else {
+                                throw new Error(`Missing "records" array in ${path}`);
                             }
                         } catch (e) {
-                            console.warn(`⚠️ Error loading ${path}:`, e);
+                            console.error(`❌ Error processing ${path}:`, e);
+                            throw e;
                         }
                     }
                     state.gpus = gpuMap;
                     state.gpuAliases = gpuAliasMap;
-                    console.log(`✅ Loaded ${state.gpus.size} GPUs`);
+                    console.log(`✅ Total GPUs loaded: ${state.gpus.size}`);
 
                     state.loaded = true;
                     console.log('🎉 Database fully loaded');
                 } catch (err) {
                     console.error('❌ Database load error:', err);
                     state.loadError = err.message || 'Unknown error';
-                    dom.gameGrid.innerHTML = `<div class="loading-grid">⚠️ Failed to load database. Check console.</div>`;
-                } finally {
-                    state.loading = false;
-                    // If there was an error, show it in the modal
-                    if (state.loadError) {
+                    dom.gameGrid.innerHTML = `
+                        <div class="error-grid">
+                            ⚠️ Failed to load database.<br>
+                            <span style="font-size:0.85rem;color:var(--text-dim);">${state.loadError}</span><br>
+                            <button class="btn btn-sm" onclick="location.reload()" style="margin-top:12px;">Retry</button>
+                        </div>
+                    `;
+                    if (dom.specModal.classList.contains('active')) {
                         showError(state.loadError);
                     }
+                    state.loaded = false;
+                } finally {
+                    state.loading = false;
                 }
             }
 
@@ -467,7 +481,7 @@
                 dom.modalError.classList.add('active');
             }
 
-            // ── Hardware resolution ──
+            // ── Hardware resolution (unchanged) ──
             function resolveCpu(query) {
                 const q = normalize(query);
                 if (!q) return null;
@@ -510,7 +524,7 @@
                 return null;
             }
 
-            // ── Compatibility ──
+            // ── Compatibility (unchanged) ──
             function checkCompatibility(game, userSpec) {
                 const req = game.requirements || {};
                 const min = req.minimum || {};
@@ -555,7 +569,6 @@
                     if (userRam < min.ramGB) meetsMin = false;
                 }
 
-                // Recommended
                 if (recCpu && userCpu) {
                     const userPerf = userCpu.performanceIndex || 0;
                     const recPerf = recCpu.performanceIndex || 0;
@@ -598,7 +611,15 @@
                 }
 
                 if (state.games.size === 0) {
-                    grid.innerHTML = `<div class="no-specs-msg">No games found in database.</div>`;
+                    grid.innerHTML = `
+                        <div class="error-grid">
+                            ⚠️ No games found in database.<br>
+                            <span style="font-size:0.85rem;color:var(--text-dim);">
+                                Check the console (F12) for errors.<br>
+                                Make sure <strong>game-edition-1.json</strong> is in the <strong>data/games/</strong> folder.
+                            </span>
+                        </div>
+                    `;
                     return;
                 }
 
@@ -662,10 +683,8 @@
             function openModal(step = 1) {
                 dom.specModal.classList.add('active');
                 if (!state.loaded) {
-                    // Show loading step
                     dom.modalSteps.forEach(el => el.classList.remove('active'));
                     dom.modalLoading.classList.add('active');
-                    // If not loading yet, start
                     if (!state.loading && !state.loadError) {
                         loadDatabase().then(() => {
                             if (state.loaded) {
@@ -679,7 +698,6 @@
                     }
                     return;
                 }
-                // Already loaded
                 populateSuggestions();
                 dom.modalSteps.forEach(el => el.classList.remove('active'));
                 document.querySelector(`.modal-step[data-step="${step}"]`)?.classList.add('active');
@@ -761,7 +779,6 @@
 
             // ── Init ──
             async function init() {
-                // Load database in background
                 loadDatabase().then(() => {
                     if (state.loaded && state.userSpecs) {
                         renderGameGrid();
@@ -781,14 +798,12 @@
                     renderGameGrid();
                 }
 
-                // ── Intro button ──
                 dom.introCheckBtn.addEventListener('click', () => {
                     dom.introOverlay.classList.add('hidden');
                     dom.app.classList.add('active');
                     openModal(1);
                 });
 
-                // ── Modal navigation ──
                 dom.modalCloseBtn.addEventListener('click', closeModal);
                 dom.specModal.addEventListener('click', (e) => {
                     if (e.target === dom.specModal) closeModal();
@@ -820,7 +835,6 @@
                 });
                 dom.step3Save.addEventListener('click', saveSpecs);
 
-                // ── Add specs button ──
                 const addBtn = document.getElementById('addSpecsBtn');
                 if (addBtn) addBtn.addEventListener('click', () => openModal(1));
 
