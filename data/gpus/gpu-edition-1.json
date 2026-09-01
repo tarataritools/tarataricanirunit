@@ -1,0 +1,385 @@
+{
+  "edition": 1,
+  "created": "2026-09",
+  "type": "gpus",
+  "records": [
+    {
+      "id": "gpu-nvidia-riva-tnt2",
+      "name": "NVIDIA Riva TNT2",
+      "aliases": ["Riva TNT2"],
+      "performanceIndex": 50,
+      "vramGB": 0.016
+    },
+    {
+      "id": "gpu-nvidia-geforce-2",
+      "name": "NVIDIA GeForce 2",
+      "aliases": ["GeForce 2"],
+      "performanceIndex": 100,
+      "vramGB": 0.032
+    },
+    {
+      "id": "gpu-nvidia-geforce-3",
+      "name": "NVIDIA GeForce 3",
+      "aliases": ["GeForce 3"],
+      "performanceIndex": 180,
+      "vramGB": 0.064
+    },
+    {
+      "id": "gpu-nvidia-geforce-4",
+      "name": "NVIDIA GeForce 4",
+      "aliases": ["GeForce 4"],
+      "performanceIndex": 250,
+      "vramGB": 0.064
+    },
+    {
+      "id": "gpu-nvidia-geforce-6",
+      "name": "NVIDIA GeForce 6",
+      "aliases": ["GeForce 6"],
+      "performanceIndex": 400,
+      "vramGB": 0.128
+    },
+    {
+      "id": "gpu-nvidia-geforce-7600gt",
+      "name": "NVIDIA GeForce 7600 GT",
+      "aliases": ["GeForce 7600 GT", "7600GT"],
+      "performanceIndex": 550,
+      "vramGB": 0.256
+    },
+    {
+      "id": "gpu-nvidia-geforce-7800gtx",
+      "name": "NVIDIA GeForce 7800 GTX",
+      "aliases": ["GeForce 7800 GTX", "7800GTX"],
+      "performanceIndex": 700,
+      "vramGB": 0.256
+    },
+    {
+      "id": "gpu-nvidia-geforce-8800gt",
+      "name": "NVIDIA GeForce 8800 GT",
+      "aliases": ["GeForce 8800 GT", "8800GT"],
+      "performanceIndex": 1200,
+      "vramGB": 0.5
+    },
+    {
+      "id": "gpu-nvidia-geforce-8800gtx",
+      "name": "NVIDIA GeForce 8800 GTX",
+      "aliases": ["GeForce 8800 GTX", "8800GTX"],
+      "performanceIndex": 1400,
+      "vramGB": 0.75
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-260",
+      "name": "NVIDIA GeForce GTX 260",
+      "aliases": ["GTX 260"],
+      "performanceIndex": 1800,
+      "vramGB": 0.875
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-560",
+      "name": "NVIDIA GeForce GTX 560",
+      "aliases": ["GTX 560"],
+      "performanceIndex": 2300,
+      "vramGB": 1
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-660",
+      "name": "NVIDIA GeForce GTX 660",
+      "aliases": ["GTX 660"],
+      "performanceIndex": 2800,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-750",
+      "name": "NVIDIA GeForce GTX 750",
+      "aliases": ["GTX 750"],
+      "performanceIndex": 3000,
+      "vramGB": 1
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-750-ti",
+      "name": "NVIDIA GeForce GTX 750 Ti",
+      "aliases": ["GTX 750 Ti", "750 Ti"],
+      "performanceIndex": 3300,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-760",
+      "name": "NVIDIA GeForce GTX 760",
+      "aliases": ["GTX 760"],
+      "performanceIndex": 3700,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-770",
+      "name": "NVIDIA GeForce GTX 770",
+      "aliases": ["GTX 770"],
+      "performanceIndex": 4200,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-780",
+      "name": "NVIDIA GeForce GTX 780",
+      "aliases": ["GTX 780"],
+      "performanceIndex": 4800,
+      "vramGB": 3
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-950",
+      "name": "NVIDIA GeForce GTX 950",
+      "aliases": ["GTX 950"],
+      "performanceIndex": 3500,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-960",
+      "name": "NVIDIA GeForce GTX 960",
+      "aliases": ["GTX 960"],
+      "performanceIndex": 4000,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-970",
+      "name": "NVIDIA GeForce GTX 970",
+      "aliases": ["GTX 970"],
+      "performanceIndex": 5000,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-980",
+      "name": "NVIDIA GeForce GTX 980",
+      "aliases": ["GTX 980"],
+      "performanceIndex": 5600,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1050",
+      "name": "NVIDIA GeForce GTX 1050",
+      "aliases": ["GTX 1050"],
+      "performanceIndex": 4200,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1050-ti",
+      "name": "NVIDIA GeForce GTX 1050 Ti",
+      "aliases": ["GTX 1050 Ti", "1050 Ti"],
+      "performanceIndex": 4800,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1060",
+      "name": "NVIDIA GeForce GTX 1060",
+      "aliases": ["GTX 1060"],
+      "performanceIndex": 6000,
+      "vramGB": 6
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1070",
+      "name": "NVIDIA GeForce GTX 1070",
+      "aliases": ["GTX 1070"],
+      "performanceIndex": 7000,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1080",
+      "name": "NVIDIA GeForce GTX 1080",
+      "aliases": ["GTX 1080"],
+      "performanceIndex": 8000,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1080-ti",
+      "name": "NVIDIA GeForce GTX 1080 Ti",
+      "aliases": ["GTX 1080 Ti", "1080 Ti"],
+      "performanceIndex": 8800,
+      "vramGB": 11
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-2060",
+      "name": "NVIDIA GeForce RTX 2060",
+      "aliases": ["RTX 2060"],
+      "performanceIndex": 8500,
+      "vramGB": 6
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-2070",
+      "name": "NVIDIA GeForce RTX 2070",
+      "aliases": ["RTX 2070"],
+      "performanceIndex": 9200,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-2080",
+      "name": "NVIDIA GeForce RTX 2080",
+      "aliases": ["RTX 2080"],
+      "performanceIndex": 10000,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-3060",
+      "name": "NVIDIA GeForce RTX 3060",
+      "aliases": ["RTX 3060"],
+      "performanceIndex": 9500,
+      "vramGB": 12
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-3070",
+      "name": "NVIDIA GeForce RTX 3070",
+      "aliases": ["RTX 3070"],
+      "performanceIndex": 11000,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-3080",
+      "name": "NVIDIA GeForce RTX 3080",
+      "aliases": ["RTX 3080"],
+      "performanceIndex": 12500,
+      "vramGB": 10
+    },
+    {
+      "id": "gpu-nvidia-geforce-rtx-3090",
+      "name": "NVIDIA GeForce RTX 3090",
+      "aliases": ["RTX 3090"],
+      "performanceIndex": 14000,
+      "vramGB": 24
+    },
+    {
+      "id": "gpu-amd-radeon-hd-7870",
+      "name": "AMD Radeon HD 7870",
+      "aliases": ["HD 7870"],
+      "performanceIndex": 3600,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-amd-radeon-rx-460",
+      "name": "AMD Radeon RX 460",
+      "aliases": ["RX 460"],
+      "performanceIndex": 3800,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-amd-radeon-rx-470",
+      "name": "AMD Radeon RX 470",
+      "aliases": ["RX 470"],
+      "performanceIndex": 4800,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-amd-radeon-rx-480",
+      "name": "AMD Radeon RX 480",
+      "aliases": ["RX 480"],
+      "performanceIndex": 5300,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-amd-radeon-rx-5500",
+      "name": "AMD Radeon RX 5500",
+      "aliases": ["RX 5500"],
+      "performanceIndex": 5700,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-amd-radeon-rx-5500-xt",
+      "name": "AMD Radeon RX 5500 XT",
+      "aliases": ["RX 5500 XT", "5500 XT"],
+      "performanceIndex": 6000,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-amd-radeon-rx-5600-xt",
+      "name": "AMD Radeon RX 5600 XT",
+      "aliases": ["RX 5600 XT", "5600 XT"],
+      "performanceIndex": 6800,
+      "vramGB": 6
+    },
+    {
+      "id": "gpu-amd-radeon-rx-5700",
+      "name": "AMD Radeon RX 5700",
+      "aliases": ["RX 5700"],
+      "performanceIndex": 7300,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-amd-radeon-rx-5700-xt",
+      "name": "AMD Radeon RX 5700 XT",
+      "aliases": ["RX 5700 XT", "5700 XT"],
+      "performanceIndex": 7800,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-amd-radeon-rx-6600",
+      "name": "AMD Radeon RX 6600",
+      "aliases": ["RX 6600"],
+      "performanceIndex": 8200,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-amd-radeon-rx-6600-xt",
+      "name": "AMD Radeon RX 6600 XT",
+      "aliases": ["RX 6600 XT", "6600 XT"],
+      "performanceIndex": 8600,
+      "vramGB": 8
+    },
+    {
+      "id": "gpu-amd-radeon-rx-6700-xt",
+      "name": "AMD Radeon RX 6700 XT",
+      "aliases": ["RX 6700 XT", "6700 XT"],
+      "performanceIndex": 9600,
+      "vramGB": 12
+    },
+    {
+      "id": "gpu-amd-radeon-rx-6800",
+      "name": "AMD Radeon RX 6800",
+      "aliases": ["RX 6800"],
+      "performanceIndex": 10500,
+      "vramGB": 16
+    },
+    {
+      "id": "gpu-amd-radeon-rx-6800-xt",
+      "name": "AMD Radeon RX 6800 XT",
+      "aliases": ["RX 6800 XT", "6800 XT"],
+      "performanceIndex": 11200,
+      "vramGB": 16
+    },
+    {
+      "id": "gpu-nvidia-geforce-gt-710",
+      "name": "NVIDIA GeForce GT 710",
+      "aliases": ["GT 710"],
+      "performanceIndex": 1200,
+      "vramGB": 1
+    },
+    {
+      "id": "gpu-nvidia-geforce-gt-730",
+      "name": "NVIDIA GeForce GT 730",
+      "aliases": ["GT 730"],
+      "performanceIndex": 1500,
+      "vramGB": 1
+    },
+    {
+      "id": "gpu-nvidia-geforce-gt-1030",
+      "name": "NVIDIA GeForce GT 1030",
+      "aliases": ["GT 1030"],
+      "performanceIndex": 2500,
+      "vramGB": 2
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1650",
+      "name": "NVIDIA GeForce GTX 1650",
+      "aliases": ["GTX 1650"],
+      "performanceIndex": 5500,
+      "vramGB": 4
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1660",
+      "name": "NVIDIA GeForce GTX 1660",
+      "aliases": ["GTX 1660"],
+      "performanceIndex": 6500,
+      "vramGB": 6
+    },
+    {
+      "id": "gpu-nvidia-geforce-gtx-1660-ti",
+      "name": "NVIDIA GeForce GTX 1660 Ti",
+      "aliases": ["GTX 1660 Ti", "1660 Ti"],
+      "performanceIndex": 7000,
+      "vramGB": 6
+    }
+  ]
+}
