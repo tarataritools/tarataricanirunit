@@ -8,504 +8,84 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        /* ── Reset & Base ── */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        :root {
-            --bg: #0d1a0d;
-            --surface: #152015;
-            --surface2: #1e2b1e;
-            --surface3: #2a3d2a;
-            --border: #2f4a2f;
-            --text: #dff0df;
-            --text-dim: #8aaa8a;
-            --green: #4caf50;
-            --green-dark: #2e7d32;
-            --green-light: #66bb6a;
-            --accent: #66bb6a;
-            --red: #ef5350;
-            --yellow: #ffca28;
-            --radius: 12px;
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            --transition: 0.2s ease;
-        }
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        a {
-            color: var(--green-light);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--surface);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--surface3);
-            border-radius: 8px;
-        }
-
-        /* ── Icons ── */
-        .icon {
-            display: inline-block;
-            width: 1.2em;
-            height: 1.2em;
-            vertical-align: middle;
-            fill: currentColor;
-            stroke: none;
-            flex-shrink: 0;
-        }
-        .icon-lg {
-            width: 2.4rem;
-            height: 2.4rem;
-        }
-
-        /* ── Spinner ── */
-        .spinner {
-            display: inline-block;
-            width: 1.2em;
-            height: 1.2em;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ── Intro Overlay ── */
-        #introOverlay {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg);
-            background-image: radial-gradient(circle at 30% 30%, #1a3a1a 0%, var(--bg) 70%);
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        #introOverlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .intro-content {
-            text-align: center;
-            max-width: 600px;
-            padding: 40px 20px;
-        }
-        .intro-content .logo-icon {
-            margin-bottom: 16px;
-        }
-        .intro-content h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #a5d6a7, #4caf50);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .intro-content p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin: 16px 0 32px;
-            line-height: 1.6;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            font-family: inherit;
-            border: none;
-            cursor: pointer;
-            transition: background var(--transition), transform var(--transition),
-                box-shadow var(--transition);
-            background: var(--green);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            background: var(--green-dark);
-            box-shadow: 0 8px 28px rgba(76, 175, 80, 0.4);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--green);
-            color: var(--green);
-            box-shadow: none;
-        }
-        .btn-outline:hover {
-            background: var(--green);
-            color: #fff;
-        }
-        .btn-sm {
-            padding: 6px 16px;
-            font-size: 0.85rem;
-        }
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* ── Main App ── */
-        #app {
-            display: none;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        #app.active {
-            display: flex;
-        }
-
-        /* Header */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--green-light);
-        }
-        .logo span {
-            font-weight: 400;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .spec-badge {
-            background: var(--surface2);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .spec-badge .green-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--green);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        /* Game Grid */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 24px;
-            flex: 1;
-        }
-        .game-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: border-color var(--transition), transform var(--transition);
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-        }
-        .game-card:hover {
-            border-color: var(--green);
-            transform: translateY(-4px);
-        }
-        .game-poster {
-            height: 140px;
-            background: var(--surface2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--text-dim);
-            border-bottom: 1px solid var(--border);
-            position: relative;
-        }
-        .game-poster .placeholder {
-            opacity: 0.5;
-            font-size: 3rem;
-        }
-        .game-info {
-            padding: 12px 16px 16px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .game-name {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .game-meta {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-bottom: 8px;
-        }
-        .game-status {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            align-self: flex-start;
-            background: var(--surface2);
-        }
-        .game-status.supported {
-            color: var(--green);
-            background: rgba(76, 175, 80, 0.15);
-        }
-        .game-status.partial {
-            color: var(--yellow);
-            background: rgba(255, 202, 40, 0.15);
-        }
-        .game-status.notsupported {
-            color: var(--red);
-            background: rgba(239, 83, 80, 0.15);
-        }
-        .game-status.unknown {
-            color: var(--text-dim);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .no-specs-msg {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-dim);
-            font-size: 1.2rem;
-        }
-        .loading-grid {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-dim);
-        }
-
-        /* ── Spec Modal ── */
-        #specModal {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        #specModal.active {
-            display: flex;
-        }
-        .modal-content {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            max-width: 500px;
-            width: 100%;
-            padding: 30px 28px;
-            box-shadow: var(--shadow);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            font-size: 1.8rem;
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            cursor: pointer;
-            line-height: 1;
-        }
-        .modal-close:hover {
-            color: var(--text);
-        }
-        .modal-step {
-            display: none;
-            animation: fadeUp 0.3s ease;
-        }
-        .modal-step.active {
-            display: block;
-        }
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .modal-step h2 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .modal-step p {
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-dim);
-            margin-bottom: 4px;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px 14px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: border-color var(--transition);
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--green);
-        }
-        .form-group input::placeholder {
-            color: var(--text-dim);
-            opacity: 0.6;
-        }
-        .form-group datalist {
-            display: none;
-        }
-        .form-hint {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-top: 4px;
-        }
-        .step-actions {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-        .step-actions .btn {
-            flex: 1;
-            min-width: 100px;
-        }
-        .step-actions .btn-outline {
-            flex: 0 1 auto;
-        }
-        .external-link {
-            display: inline-block;
-            margin-top: 12px;
-            font-size: 0.9rem;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-
-        .modal-loading {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-dim);
-        }
-        .modal-loading .spinner {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-width: 4px;
-            margin-bottom: 16px;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 600px) {
-            .intro-content h1 {
-                font-size: 2.2rem;
-            }
-            .game-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                padding: 16px;
-                gap: 14px;
-            }
-            .modal-content {
-                padding: 20px 16px;
-            }
-            .header {
-                padding: 12px 16px;
-            }
-            .logo {
-                font-size: 1rem;
-            }
-            .spec-badge {
-                font-size: 0.75rem;
-                padding: 4px 12px;
-            }
-        }
+        /* ── all styles unchanged, same as previous ── */
+        /* (I'll keep them compact to save space) */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root { --bg: #0d1a0d; --surface: #152015; --surface2: #1e2b1e; --surface3: #2a3d2a; --border: #2f4a2f; --text: #dff0df; --text-dim: #8aaa8a; --green: #4caf50; --green-dark: #2e7d32; --green-light: #66bb6a; --accent: #66bb6a; --red: #ef5350; --yellow: #ffca28; --radius: 12px; --shadow: 0 8px 24px rgba(0,0,0,0.6); --transition: 0.2s ease; }
+        html { font-size:16px; scroll-behavior:smooth; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+        a { color:var(--green-light); text-decoration:none; }
+        a:hover { text-decoration:underline; }
+        ::-webkit-scrollbar { width:6px; height:6px; }
+        ::-webkit-scrollbar-track { background:var(--surface); }
+        ::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:8px; }
+        .icon { display:inline-block; width:1.2em; height:1.2em; vertical-align:middle; fill:currentColor; stroke:none; flex-shrink:0; }
+        .icon-lg { width:2.4rem; height:2.4rem; }
+        .spinner { display:inline-block; width:1.2em; height:1.2em; border:3px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        #introOverlay { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; background:var(--bg); background-image:radial-gradient(circle at 30% 30%, #1a3a1a 0%, var(--bg) 70%); transition:opacity 0.5s ease, visibility 0.5s ease; }
+        #introOverlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+        .intro-content { text-align:center; max-width:600px; padding:40px 20px; }
+        .intro-content .logo-icon { margin-bottom:16px; }
+        .intro-content h1 { font-size:3rem; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(135deg,#a5d6a7,#4caf50); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .intro-content p { font-size:1.2rem; color:var(--text-dim); margin:16px 0 32px; line-height:1.6; }
+        .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 32px; border-radius:40px; font-weight:600; font-size:1.1rem; font-family:inherit; border:none; cursor:pointer; transition:background var(--transition), transform var(--transition), box-shadow var(--transition); background:var(--green); color:#fff; box-shadow:0 4px 20px rgba(76,175,80,0.3); }
+        .btn:hover { transform:translateY(-2px); background:var(--green-dark); box-shadow:0 8px 28px rgba(76,175,80,0.4); }
+        .btn-outline { background:transparent; border:2px solid var(--green); color:var(--green); box-shadow:none; }
+        .btn-outline:hover { background:var(--green); color:#fff; }
+        .btn-sm { padding:6px 16px; font-size:0.85rem; }
+        .btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+        #app { display:none; flex-direction:column; min-height:100vh; }
+        #app.active { display:flex; }
+        .header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:var(--surface); border-bottom:1px solid var(--border); flex-wrap:wrap; gap:12px; }
+        .logo { display:flex; align-items:center; gap:10px; font-size:1.3rem; font-weight:700; color:var(--green-light); }
+        .logo span { font-weight:400; color:var(--text-dim); font-size:0.85rem; }
+        .header-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        .spec-badge { background:var(--surface2); padding:6px 16px; border-radius:20px; font-size:0.85rem; border:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+        .spec-badge .green-dot { width:10px; height:10px; background:var(--green); border-radius:50%; display:inline-block; }
+        .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:20px; padding:24px; flex:1; }
+        .game-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:border-color var(--transition), transform var(--transition); box-shadow:var(--shadow); display:flex; flex-direction:column; }
+        .game-card:hover { border-color:var(--green); transform:translateY(-4px); }
+        .game-poster { height:140px; background:var(--surface2); display:flex; align-items:center; justify-content:center; font-size:3rem; color:var(--text-dim); border-bottom:1px solid var(--border); position:relative; }
+        .game-poster .placeholder { opacity:0.5; font-size:3rem; }
+        .game-info { padding:12px 16px 16px; flex:1; display:flex; flex-direction:column; }
+        .game-name { font-weight:600; font-size:1rem; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .game-meta { font-size:0.75rem; color:var(--text-dim); margin-bottom:8px; }
+        .game-status { margin-top:auto; display:flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:600; padding:4px 10px; border-radius:20px; align-self:flex-start; background:var(--surface2); }
+        .game-status.supported { color:var(--green); background:rgba(76,175,80,0.15); }
+        .game-status.partial { color:var(--yellow); background:rgba(255,202,40,0.15); }
+        .game-status.notsupported { color:var(--red); background:rgba(239,83,80,0.15); }
+        .game-status.unknown { color:var(--text-dim); background:rgba(255,255,255,0.05); }
+        .no-specs-msg { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-dim); font-size:1.2rem; }
+        .loading-grid { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-dim); }
+        #specModal { position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:20px; }
+        #specModal.active { display:flex; }
+        .modal-content { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); max-width:500px; width:100%; padding:30px 28px; box-shadow:var(--shadow); position:relative; max-height:90vh; overflow-y:auto; }
+        .modal-close { position:absolute; top:16px; right:20px; font-size:1.8rem; background:none; border:none; color:var(--text-dim); cursor:pointer; line-height:1; }
+        .modal-close:hover { color:var(--text); }
+        .modal-step { display:none; animation:fadeUp 0.3s ease; }
+        .modal-step.active { display:block; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        .modal-step h2 { font-size:1.5rem; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+        .modal-step p { color:var(--text-dim); margin-bottom:20px; font-size:0.95rem; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; font-size:0.85rem; font-weight:500; color:var(--text-dim); margin-bottom:4px; }
+        .form-group input, .form-group select { width:100%; padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.95rem; font-family:inherit; transition:border-color var(--transition); }
+        .form-group input:focus, .form-group select:focus { outline:none; border-color:var(--green); }
+        .form-group input::placeholder { color:var(--text-dim); opacity:0.6; }
+        .form-group datalist { display:none; }
+        .form-hint { font-size:0.75rem; color:var(--text-dim); margin-top:4px; }
+        .step-actions { display:flex; justify-content:space-between; gap:12px; margin-top:24px; flex-wrap:wrap; }
+        .step-actions .btn { flex:1; min-width:100px; }
+        .step-actions .btn-outline { flex:0 1 auto; }
+        .external-link { display:inline-block; margin-top:12px; font-size:0.9rem; }
+        .summary-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); }
+        .summary-item:last-child { border-bottom:none; }
+        .modal-loading { text-align:center; padding:40px 0; color:var(--text-dim); }
+        .modal-loading .spinner { width:2.5rem; height:2.5rem; border-width:4px; margin-bottom:16px; }
+        .modal-error { text-align:center; padding:40px 20px; color:var(--red); }
+        .modal-error .spinner { display:none; }
+        @media (max-width:600px) { .intro-content h1 { font-size:2.2rem; } .game-grid { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); padding:16px; gap:14px; } .modal-content { padding:20px 16px; } .header { padding:12px 16px; } .logo { font-size:1rem; } .spec-badge { font-size:0.75rem; padding:4px 12px; } }
     </style>
 </head>
 <body>
@@ -561,11 +141,20 @@
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn">✕</button>
 
-            <!-- Loading state (shown while DB loads) -->
+            <!-- Loading state -->
             <div id="modalLoading" class="modal-step active" data-step="0">
                 <div class="modal-loading">
                     <div class="spinner"></div>
                     <p>Loading hardware database…</p>
+                </div>
+            </div>
+
+            <!-- Error state -->
+            <div id="modalError" class="modal-step" data-step="-1">
+                <div class="modal-error">
+                    <p>⚠️ Failed to load database.</p>
+                    <p style="font-size:0.85rem; margin-top:8px;" id="errorDetail">Check the console for details.</p>
+                    <button class="btn btn-outline" style="margin-top:16px;" onclick="location.reload()">Refresh</button>
                 </div>
             </div>
 
@@ -659,13 +248,12 @@
 
     <script>
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        //  TaraTari Can I Run It? – Full Application
+        //  TaraTari – with full error handling & logging
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         (() => {
             'use strict';
 
-            // ── State ──
             const state = {
                 dbIndex: null,
                 games: new Map(),
@@ -677,9 +265,9 @@
                 userSpecs: null,
                 currentStep: 1,
                 loading: false,
+                loadError: null,
             };
 
-            // ── DOM refs ──
             const $ = (s) => document.querySelector(s);
             const $$ = (s) => document.querySelectorAll(s);
 
@@ -693,6 +281,8 @@
                 specModal: $('#specModal'),
                 modalCloseBtn: $('#modalCloseBtn'),
                 modalLoading: $('#modalLoading'),
+                modalError: $('#modalError'),
+                errorDetail: $('#errorDetail'),
                 cpuSearch: $('#cpuSearch'),
                 cpuSuggestions: $('#cpuSuggestions'),
                 gpuSearch: $('#gpuSearch'),
@@ -709,42 +299,52 @@
                 modalSteps: $$('.modal-step'),
             };
 
-            // ── Helpers ──
             function normalize(str) {
                 return (str || '').trim().toLowerCase().replace(/\s+/g, ' ');
             }
-
             function getRamValue() {
                 return parseFloat(dom.ramSelect.value) || 8;
             }
 
-            // ── Database loading ──
+            // ── Database loader with error handling ──
             async function loadDatabase() {
                 if (state.loaded) return;
+                if (state.loading) return;
                 state.loading = true;
+                state.loadError = null;
                 dom.gameGrid.innerHTML = `<div class="loading-grid">Loading game data…</div>`;
+                console.log('📡 Fetching database index…');
+
                 try {
                     const idxResp = await fetch('./data/database-index.json');
-                    if (!idxResp.ok) throw new Error('Failed to load index');
+                    if (!idxResp.ok) {
+                        throw new Error(`HTTP ${idxResp.status} – cannot fetch database-index.json`);
+                    }
                     const index = await idxResp.json();
                     state.dbIndex = index;
+                    console.log('✅ Index loaded:', index);
 
-                    // Games
+                    // Load games
                     const gameEditions = index.games || [];
+                    console.log(`📂 Loading ${gameEditions.length} game edition(s)`);
                     const rawGames = [];
                     for (const path of gameEditions) {
                         try {
                             const resp = await fetch(`./${path}`);
-                            if (resp.ok) {
-                                const data = await resp.json();
-                                if (data.records) {
-                                    for (const rec of data.records) {
-                                        rec._edition = data.edition || 0;
-                                        rawGames.push(rec);
-                                    }
+                            if (!resp.ok) {
+                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
+                                continue;
+                            }
+                            const data = await resp.json();
+                            if (data.records) {
+                                for (const rec of data.records) {
+                                    rec._edition = data.edition || 0;
+                                    rawGames.push(rec);
                                 }
                             }
-                        } catch (_) { /* skip */ }
+                        } catch (e) {
+                            console.warn(`⚠️ Error loading ${path}:`, e);
+                        }
                     }
                     const gameMap = new Map();
                     for (const rec of rawGames) {
@@ -756,93 +356,115 @@
                         }
                     }
                     state.games = gameMap;
+                    console.log(`✅ Loaded ${state.games.size} games`);
 
-                    // CPUs
+                    // Load CPUs
                     const cpuEditions = index.cpus || [];
                     const cpuMap = new Map();
                     const cpuAliasMap = new Map();
                     for (const path of cpuEditions) {
                         try {
                             const resp = await fetch(`./${path}`);
-                            if (resp.ok) {
-                                const data = await resp.json();
-                                if (data.records) {
-                                    for (const rec of data.records) {
-                                        if (!rec.id) continue;
-                                        const existing = cpuMap.get(rec.id);
-                                        if (!existing || (data.edition || 0) > (existing._edition || 0)) {
-                                            rec._edition = data.edition || 0;
-                                            cpuMap.set(rec.id, rec);
-                                        }
-                                        if (rec.aliases) {
-                                            for (const alias of rec.aliases) {
-                                                const key = normalize(alias);
-                                                if (!cpuAliasMap.has(key)) {
-                                                    cpuAliasMap.set(key, rec.id);
-                                                }
-                                            }
-                                        }
-                                        if (rec.name) {
-                                            const key = normalize(rec.name);
+                            if (!resp.ok) {
+                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
+                                continue;
+                            }
+                            const data = await resp.json();
+                            if (data.records) {
+                                for (const rec of data.records) {
+                                    if (!rec.id) continue;
+                                    const existing = cpuMap.get(rec.id);
+                                    if (!existing || (data.edition || 0) > (existing._edition || 0)) {
+                                        rec._edition = data.edition || 0;
+                                        cpuMap.set(rec.id, rec);
+                                    }
+                                    if (rec.aliases) {
+                                        for (const alias of rec.aliases) {
+                                            const key = normalize(alias);
                                             if (!cpuAliasMap.has(key)) {
                                                 cpuAliasMap.set(key, rec.id);
                                             }
                                         }
                                     }
+                                    if (rec.name) {
+                                        const key = normalize(rec.name);
+                                        if (!cpuAliasMap.has(key)) {
+                                            cpuAliasMap.set(key, rec.id);
+                                        }
+                                    }
                                 }
                             }
-                        } catch (_) { /* skip */ }
+                        } catch (e) {
+                            console.warn(`⚠️ Error loading ${path}:`, e);
+                        }
                     }
                     state.cpus = cpuMap;
                     state.cpuAliases = cpuAliasMap;
+                    console.log(`✅ Loaded ${state.cpus.size} CPUs`);
 
-                    // GPUs
+                    // Load GPUs
                     const gpuEditions = index.gpus || [];
                     const gpuMap = new Map();
                     const gpuAliasMap = new Map();
                     for (const path of gpuEditions) {
                         try {
                             const resp = await fetch(`./${path}`);
-                            if (resp.ok) {
-                                const data = await resp.json();
-                                if (data.records) {
-                                    for (const rec of data.records) {
-                                        if (!rec.id) continue;
-                                        const existing = gpuMap.get(rec.id);
-                                        if (!existing || (data.edition || 0) > (existing._edition || 0)) {
-                                            rec._edition = data.edition || 0;
-                                            gpuMap.set(rec.id, rec);
-                                        }
-                                        if (rec.aliases) {
-                                            for (const alias of rec.aliases) {
-                                                const key = normalize(alias);
-                                                if (!gpuAliasMap.has(key)) {
-                                                    gpuAliasMap.set(key, rec.id);
-                                                }
-                                            }
-                                        }
-                                        if (rec.name) {
-                                            const key = normalize(rec.name);
+                            if (!resp.ok) {
+                                console.warn(`⚠️ Failed to load ${path} – HTTP ${resp.status}`);
+                                continue;
+                            }
+                            const data = await resp.json();
+                            if (data.records) {
+                                for (const rec of data.records) {
+                                    if (!rec.id) continue;
+                                    const existing = gpuMap.get(rec.id);
+                                    if (!existing || (data.edition || 0) > (existing._edition || 0)) {
+                                        rec._edition = data.edition || 0;
+                                        gpuMap.set(rec.id, rec);
+                                    }
+                                    if (rec.aliases) {
+                                        for (const alias of rec.aliases) {
+                                            const key = normalize(alias);
                                             if (!gpuAliasMap.has(key)) {
                                                 gpuAliasMap.set(key, rec.id);
                                             }
                                         }
                                     }
+                                    if (rec.name) {
+                                        const key = normalize(rec.name);
+                                        if (!gpuAliasMap.has(key)) {
+                                            gpuAliasMap.set(key, rec.id);
+                                        }
+                                    }
                                 }
                             }
-                        } catch (_) { /* skip */ }
+                        } catch (e) {
+                            console.warn(`⚠️ Error loading ${path}:`, e);
+                        }
                     }
                     state.gpus = gpuMap;
                     state.gpuAliases = gpuAliasMap;
+                    console.log(`✅ Loaded ${state.gpus.size} GPUs`);
 
                     state.loaded = true;
-                    console.log(`✅ Loaded: ${state.games.size} games, ${state.cpus.size} CPUs, ${state.gpus.size} GPUs`);
+                    console.log('🎉 Database fully loaded');
                 } catch (err) {
-                    console.error('Database load error:', err);
-                    dom.gameGrid.innerHTML = `<div class="loading-grid">⚠️ Failed to load database. Please refresh.</div>`;
+                    console.error('❌ Database load error:', err);
+                    state.loadError = err.message || 'Unknown error';
+                    dom.gameGrid.innerHTML = `<div class="loading-grid">⚠️ Failed to load database. Check console.</div>`;
                 } finally {
                     state.loading = false;
+                    // If there was an error, show it in the modal
+                    if (state.loadError) {
+                        showError(state.loadError);
+                    }
                 }
+            }
+
+            function showError(msg) {
+                dom.errorDetail.textContent = msg;
+                dom.modalSteps.forEach(el => el.classList.remove('active'));
+                dom.modalError.classList.add('active');
             }
 
             // ── Hardware resolution ──
@@ -888,7 +510,7 @@
                 return null;
             }
 
-            // ── Compatibility engine ──
+            // ── Compatibility ──
             function checkCompatibility(game, userSpec) {
                 const req = game.requirements || {};
                 const min = req.minimum || {};
@@ -904,17 +526,14 @@
                 const hasMinCpu = !!minCpu;
                 const hasMinGpu = !!minGpu;
                 const hasMinRam = typeof min.ramGB === 'number' && min.ramGB > 0;
-                const hasMinVram = typeof min.vramGB === 'number' && min.vramGB > 0;
-                const hasMinOs = Array.isArray(min.os) && min.os.length > 0;
 
-                if (!hasMinCpu && !hasMinGpu && !hasMinRam && !hasMinVram && !hasMinOs) {
+                if (!hasMinCpu && !hasMinGpu && !hasMinRam) {
                     return { status: 'unknown' };
                 }
 
                 let meetsMin = true;
                 let meetsRec = true;
 
-                // CPU
                 if (hasMinCpu && userCpu && minCpu) {
                     const userPerf = userCpu.performanceIndex || 0;
                     const minPerf = minCpu.performanceIndex || 0;
@@ -923,7 +542,6 @@
                     meetsMin = false;
                 }
 
-                // GPU
                 if (hasMinGpu && userGpu && minGpu) {
                     const userPerf = userGpu.performanceIndex || 0;
                     const minPerf = minGpu.performanceIndex || 0;
@@ -932,13 +550,12 @@
                     meetsMin = false;
                 }
 
-                // RAM
                 if (hasMinRam) {
                     const userRam = userSpec.ram || 0;
                     if (userRam < min.ramGB) meetsMin = false;
                 }
 
-                // Recommended checks
+                // Recommended
                 if (recCpu && userCpu) {
                     const userPerf = userCpu.performanceIndex || 0;
                     const recPerf = recCpu.performanceIndex || 0;
@@ -966,7 +583,7 @@
                 return { status };
             }
 
-            // ── Render game grid ──
+            // ── Render ──
             function renderGameGrid() {
                 const grid = dom.gameGrid;
                 const specs = state.userSpecs;
@@ -1013,7 +630,6 @@
                 grid.innerHTML = html;
             }
 
-            // ── Update header specs badge ──
             function updateHeader() {
                 const container = dom.specStatus;
                 const specs = state.userSpecs;
@@ -1042,44 +658,35 @@
                 }
             }
 
-            // ── Spec Modal ──
+            // ── Modal ──
             function openModal(step = 1) {
-                // Show the modal immediately
                 dom.specModal.classList.add('active');
-
-                // If database not loaded, show loading step and wait
                 if (!state.loaded) {
-                    showStep(0); // loading step
-                    // Start loading if not already
-                    if (!state.loading) {
+                    // Show loading step
+                    dom.modalSteps.forEach(el => el.classList.remove('active'));
+                    dom.modalLoading.classList.add('active');
+                    // If not loading yet, start
+                    if (!state.loading && !state.loadError) {
                         loadDatabase().then(() => {
-                            // Once loaded, populate and go to step 1
-                            populateSuggestions();
-                            showStep(1);
-                            // If we had a pending step, use that
-                            if (step && step > 1) showStep(step);
+                            if (state.loaded) {
+                                populateSuggestions();
+                                dom.modalSteps.forEach(el => el.classList.remove('active'));
+                                document.querySelector(`.modal-step[data-step="${step}"]`)?.classList.add('active');
+                            }
                         });
+                    } else if (state.loadError) {
+                        showError(state.loadError);
                     }
                     return;
                 }
-
-                // If loaded, populate and show requested step
+                // Already loaded
                 populateSuggestions();
-                showStep(step || 1);
+                dom.modalSteps.forEach(el => el.classList.remove('active'));
+                document.querySelector(`.modal-step[data-step="${step}"]`)?.classList.add('active');
             }
 
             function closeModal() {
                 dom.specModal.classList.remove('active');
-            }
-
-            function showStep(step) {
-                state.currentStep = step;
-                dom.modalSteps.forEach((el) => {
-                    el.classList.remove('active');
-                });
-                // Find the step with data-step attribute matching
-                const target = document.querySelector(`.modal-step[data-step="${step}"]`);
-                if (target) target.classList.add('active');
             }
 
             function populateSuggestions() {
@@ -1154,10 +761,9 @@
 
             // ── Init ──
             async function init() {
-                // Start loading database in background
+                // Load database in background
                 loadDatabase().then(() => {
-                    // If specs exist, render
-                    if (state.userSpecs) {
+                    if (state.loaded && state.userSpecs) {
                         renderGameGrid();
                         updateHeader();
                     }
@@ -1179,7 +785,6 @@
                 dom.introCheckBtn.addEventListener('click', () => {
                     dom.introOverlay.classList.add('hidden');
                     dom.app.classList.add('active');
-                    // Open modal (it will handle loading if needed)
                     openModal(1);
                 });
 
@@ -1195,39 +800,42 @@
                         alert('Please enter your CPU.');
                         return;
                     }
-                    showStep(2);
+                    document.querySelector(`.modal-step[data-step="2"]`)?.classList.add('active');
+                    document.querySelector(`.modal-step[data-step="1"]`)?.classList.remove('active');
                 });
 
-                dom.step2Back.addEventListener('click', () => showStep(1));
+                dom.step2Back.addEventListener('click', () => {
+                    document.querySelector(`.modal-step[data-step="1"]`)?.classList.add('active');
+                    document.querySelector(`.modal-step[data-step="2"]`)?.classList.remove('active');
+                });
                 dom.step2Next.addEventListener('click', () => {
                     updateSummary();
-                    showStep(3);
+                    document.querySelector(`.modal-step[data-step="3"]`)?.classList.add('active');
+                    document.querySelector(`.modal-step[data-step="2"]`)?.classList.remove('active');
                 });
 
-                dom.step3Back.addEventListener('click', () => showStep(2));
+                dom.step3Back.addEventListener('click', () => {
+                    document.querySelector(`.modal-step[data-step="2"]`)?.classList.add('active');
+                    document.querySelector(`.modal-step[data-step="3"]`)?.classList.remove('active');
+                });
                 dom.step3Save.addEventListener('click', saveSpecs);
 
-                // ── Add specs button (if shown) ──
+                // ── Add specs button ──
                 const addBtn = document.getElementById('addSpecsBtn');
                 if (addBtn) addBtn.addEventListener('click', () => openModal(1));
 
-                // ── Keyboard shortcuts ──
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        if (dom.specModal.classList.contains('active')) closeModal();
-                    }
+                    if (e.key === 'Escape' && dom.specModal.classList.contains('active')) closeModal();
                 });
 
                 console.log('✅ TaraTari app ready');
             }
 
-            // ── Start ──
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
                 init();
             }
-
         })();
     </script>
 
