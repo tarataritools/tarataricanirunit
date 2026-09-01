@@ -1,0 +1,257 @@
+{
+  "edition": 1,
+  "created": "2026-09",
+  "type": "games",
+  "records": [
+    {
+      "id": "gta-v",
+      "name": "Grand Theft Auto V",
+      "releaseYear": 2013,
+      "developer": "Rockstar Games",
+      "publisher": "Rockstar Games",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-i5-2500k",
+          "gpu": "gpu-nvidia-gtx-660",
+          "ramGB": 4,
+          "vramGB": 1,
+          "os": ["Windows 7", "Windows 8", "Windows 10"],
+          "storage": "65 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-i7-3770",
+          "gpu": "gpu-nvidia-gtx-970",
+          "ramGB": 8,
+          "vramGB": 2,
+          "os": ["Windows 10", "Windows 11"],
+          "storage": "65 GB"
+        }
+      }
+    },
+    {
+      "id": "crysis",
+      "name": "Crysis",
+      "releaseYear": 2007,
+      "developer": "Crytek",
+      "publisher": "Electronic Arts",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-core2duo-e6600",
+          "gpu": "gpu-nvidia-geforce-7800gtx",
+          "ramGB": 2,
+          "vramGB": 0.5,
+          "os": ["Windows XP", "Windows Vista"],
+          "storage": "12 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-core2quad-q6600",
+          "gpu": "gpu-nvidia-geforce-8800gtx",
+          "ramGB": 4,
+          "vramGB": 1,
+          "os": ["Windows Vista", "Windows 7"],
+          "storage": "12 GB"
+        }
+      }
+    },
+    {
+      "id": "gta-vice-city",
+      "name": "Grand Theft Auto: Vice City",
+      "releaseYear": 2002,
+      "developer": "Rockstar Games",
+      "publisher": "Rockstar Games",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-pentium-iii",
+          "gpu": "gpu-nvidia-geforce-2",
+          "ramGB": 0.128,
+          "vramGB": 0.032,
+          "os": ["Windows 98", "Windows 2000", "Windows XP"],
+          "storage": "1.5 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-pentium-4",
+          "gpu": "gpu-nvidia-geforce-3",
+          "ramGB": 0.256,
+          "vramGB": 0.064,
+          "os": ["Windows XP"],
+          "storage": "1.5 GB"
+        }
+      }
+    },
+    {
+      "id": "gta-san-andreas",
+      "name": "Grand Theft Auto: San Andreas",
+      "releaseYear": 2004,
+      "developer": "Rockstar Games",
+      "publisher": "Rockstar Games",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-pentium-iii",
+          "gpu": "gpu-nvidia-geforce-3",
+          "ramGB": 0.256,
+          "vramGB": 0.064,
+          "os": ["Windows 2000", "Windows XP"],
+          "storage": "4.7 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-pentium-4-3ghz",
+          "gpu": "gpu-nvidia-geforce-6",
+          "ramGB": 0.5,
+          "vramGB": 0.128,
+          "os": ["Windows XP"],
+          "storage": "4.7 GB"
+        }
+      }
+    },
+    {
+      "id": "max-payne",
+      "name": "Max Payne",
+      "releaseYear": 2001,
+      "developer": "Remedy Entertainment",
+      "publisher": "Rockstar Games",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-pentium-ii",
+          "gpu": "gpu-nvidia-riva-tnt2",
+          "ramGB": 0.064,
+          "vramGB": 0.016,
+          "os": ["Windows 98", "Windows 2000"],
+          "storage": "1.0 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-pentium-iii",
+          "gpu": "gpu-nvidia-geforce-2",
+          "ramGB": 0.128,
+          "vramGB": 0.032,
+          "os": ["Windows 2000", "Windows XP"],
+          "storage": "1.0 GB"
+        }
+      }
+    },
+    {
+      "id": "nfs-most-wanted-2005",
+      "name": "Need for Speed: Most Wanted (2005)",
+      "releaseYear": 2005,
+      "developer": "EA Black Box",
+      "publisher": "Electronic Arts",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-pentium-4",
+          "gpu": "gpu-nvidia-geforce-4",
+          "ramGB": 0.256,
+          "vramGB": 0.064,
+          "os": ["Windows 2000", "Windows XP"],
+          "storage": "3.0 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-pentium-4-3ghz",
+          "gpu": "gpu-nvidia-geforce-6",
+          "ramGB": 0.5,
+          "vramGB": 0.128,
+          "os": ["Windows XP"],
+          "storage": "3.0 GB"
+        }
+      }
+    },
+    {
+      "id": "sleeping-dogs",
+      "name": "Sleeping Dogs",
+      "releaseYear": 2012,
+      "developer": "United Front Games",
+      "publisher": "Square Enix",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-amd-phenom-ii-x4",
+          "gpu": "gpu-nvidia-geforce-gtx-260",
+          "ramGB": 4,
+          "vramGB": 1,
+          "os": ["Windows 7", "Windows 8"],
+          "storage": "15 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-core-i7-2600",
+          "gpu": "gpu-nvidia-geforce-gtx-560",
+          "ramGB": 8,
+          "vramGB": 1.5,
+          "os": ["Windows 7", "Windows 8"],
+          "storage": "15 GB"
+        }
+      }
+    },
+    {
+      "id": "saints-row-the-third",
+      "name": "Saints Row: The Third",
+      "releaseYear": 2011,
+      "developer": "Volition",
+      "publisher": "THQ",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-core2duo-e6600",
+          "gpu": "gpu-nvidia-geforce-gtx-260",
+          "ramGB": 2,
+          "vramGB": 0.5,
+          "os": ["Windows 7", "Windows Vista"],
+          "storage": "10 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-core-i5-750",
+          "gpu": "gpu-nvidia-geforce-gtx-560",
+          "ramGB": 4,
+          "vramGB": 1,
+          "os": ["Windows 7"],
+          "storage": "10 GB"
+        }
+      }
+    },
+    {
+      "id": "blasphemous",
+      "name": "Blasphemous",
+      "releaseYear": 2019,
+      "developer": "The Game Kitchen",
+      "publisher": "Team17",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-core2duo-e6400",
+          "gpu": "gpu-nvidia-geforce-gt-730",
+          "ramGB": 2,
+          "vramGB": 1,
+          "os": ["Windows 7", "Windows 10"],
+          "storage": "4 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-core-i3-2100",
+          "gpu": "gpu-nvidia-geforce-gtx-750",
+          "ramGB": 4,
+          "vramGB": 2,
+          "os": ["Windows 10"],
+          "storage": "4 GB"
+        }
+      }
+    },
+    {
+      "id": "burnout-paradise",
+      "name": "Burnout Paradise",
+      "releaseYear": 2008,
+      "developer": "Criterion Games",
+      "publisher": "Electronic Arts",
+      "requirements": {
+        "minimum": {
+          "cpu": "cpu-intel-core2duo-e4300",
+          "gpu": "gpu-nvidia-geforce-7600gt",
+          "ramGB": 1,
+          "vramGB": 0.256,
+          "os": ["Windows XP", "Windows Vista"],
+          "storage": "4 GB"
+        },
+        "recommended": {
+          "cpu": "cpu-intel-core2duo-e6600",
+          "gpu": "gpu-nvidia-geforce-8800gt",
+          "ramGB": 2,
+          "vramGB": 0.5,
+          "os": ["Windows Vista", "Windows 7"],
+          "storage": "4 GB"
+        }
+      }
+    }
+  ]
+}
