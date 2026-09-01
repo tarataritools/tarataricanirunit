@@ -1,0 +1,385 @@
+{
+  "edition": 1,
+  "created": "2026-09",
+  "type": "cpus",
+  "records": [
+    {
+      "id": "cpu-intel-pentium-iii",
+      "name": "Intel Pentium III",
+      "aliases": ["Pentium III", "Intel Pentium III"],
+      "performanceIndex": 300
+    },
+    {
+      "id": "cpu-intel-pentium-4",
+      "name": "Intel Pentium 4",
+      "aliases": ["Pentium 4", "Intel Pentium 4"],
+      "performanceIndex": 600
+    },
+    {
+      "id": "cpu-intel-pentium-4-3ghz",
+      "name": "Intel Pentium 4 @ 3.0GHz",
+      "aliases": ["Pentium 4 3.0", "Intel Pentium 4 3.0GHz"],
+      "performanceIndex": 800
+    },
+    {
+      "id": "cpu-intel-core2duo-e4300",
+      "name": "Intel Core 2 Duo E4300",
+      "aliases": ["Core 2 Duo E4300", "E4300"],
+      "performanceIndex": 1200
+    },
+    {
+      "id": "cpu-intel-core2duo-e6400",
+      "name": "Intel Core 2 Duo E6400",
+      "aliases": ["Core 2 Duo E6400", "E6400"],
+      "performanceIndex": 1500
+    },
+    {
+      "id": "cpu-intel-core2duo-e6600",
+      "name": "Intel Core 2 Duo E6600",
+      "aliases": ["Core 2 Duo E6600", "E6600"],
+      "performanceIndex": 1800
+    },
+    {
+      "id": "cpu-intel-core2quad-q6600",
+      "name": "Intel Core 2 Quad Q6600",
+      "aliases": ["Core 2 Quad Q6600", "Q6600"],
+      "performanceIndex": 2500
+    },
+    {
+      "id": "cpu-intel-core-i5-750",
+      "name": "Intel Core i5-750",
+      "aliases": ["Core i5 750", "i5-750"],
+      "performanceIndex": 3800
+    },
+    {
+      "id": "cpu-intel-core-i7-2600",
+      "name": "Intel Core i7-2600",
+      "aliases": ["Core i7 2600", "i7-2600"],
+      "performanceIndex": 5000
+    },
+    {
+      "id": "cpu-intel-core-i7-2600k",
+      "name": "Intel Core i7-2600K",
+      "aliases": ["Core i7 2600K", "i7-2600K"],
+      "performanceIndex": 5200
+    },
+    {
+      "id": "cpu-intel-core-i7-3770",
+      "name": "Intel Core i7-3770",
+      "aliases": ["Core i7 3770", "i7-3770"],
+      "performanceIndex": 6000
+    },
+    {
+      "id": "cpu-intel-core-i7-3770k",
+      "name": "Intel Core i7-3770K",
+      "aliases": ["Core i7 3770K", "i7-3770K"],
+      "performanceIndex": 6200
+    },
+    {
+      "id": "cpu-intel-core-i5-4570",
+      "name": "Intel Core i5-4570",
+      "aliases": ["Core i5 4570", "i5-4570"],
+      "performanceIndex": 5300
+    },
+    {
+      "id": "cpu-intel-core-i5-4690",
+      "name": "Intel Core i5-4690",
+      "aliases": ["Core i5 4690", "i5-4690"],
+      "performanceIndex": 5800
+    },
+    {
+      "id": "cpu-intel-core-i7-4790",
+      "name": "Intel Core i7-4790",
+      "aliases": ["Core i7 4790", "i7-4790"],
+      "performanceIndex": 7000
+    },
+    {
+      "id": "cpu-intel-core-i5-8400",
+      "name": "Intel Core i5-8400",
+      "aliases": ["Core i5 8400", "i5-8400"],
+      "performanceIndex": 8000
+    },
+    {
+      "id": "cpu-intel-core-i5-8500",
+      "name": "Intel Core i5-8500",
+      "aliases": ["Core i5 8500", "i5-8500"],
+      "performanceIndex": 8200
+    },
+    {
+      "id": "cpu-intel-core-i5-8600",
+      "name": "Intel Core i5-8600",
+      "aliases": ["Core i5 8600", "i5-8600"],
+      "performanceIndex": 8500
+    },
+    {
+      "id": "cpu-intel-core-i5-8600k",
+      "name": "Intel Core i5-8600K",
+      "aliases": ["Core i5 8600K", "i5-8600K"],
+      "performanceIndex": 8800
+    },
+    {
+      "id": "cpu-intel-core-i7-8700",
+      "name": "Intel Core i7-8700",
+      "aliases": ["Core i7 8700", "i7-8700"],
+      "performanceIndex": 9500
+    },
+    {
+      "id": "cpu-intel-core-i7-8700k",
+      "name": "Intel Core i7-8700K",
+      "aliases": ["Core i7 8700K", "i7-8700K"],
+      "performanceIndex": 9800
+    },
+    {
+      "id": "cpu-intel-core-i5-9400",
+      "name": "Intel Core i5-9400",
+      "aliases": ["Core i5 9400", "i5-9400"],
+      "performanceIndex": 8500
+    },
+    {
+      "id": "cpu-intel-core-i5-10400",
+      "name": "Intel Core i5-10400",
+      "aliases": ["Core i5 10400", "i5-10400"],
+      "performanceIndex": 9200
+    },
+    {
+      "id": "cpu-intel-core-i5-10600",
+      "name": "Intel Core i5-10600",
+      "aliases": ["Core i5 10600", "i5-10600"],
+      "performanceIndex": 9500
+    },
+    {
+      "id": "cpu-intel-core-i5-10600k",
+      "name": "Intel Core i5-10600K",
+      "aliases": ["Core i5 10600K", "i5-10600K"],
+      "performanceIndex": 9800
+    },
+    {
+      "id": "cpu-intel-core-i7-10700",
+      "name": "Intel Core i7-10700",
+      "aliases": ["Core i7 10700", "i7-10700"],
+      "performanceIndex": 10500
+    },
+    {
+      "id": "cpu-intel-core-i7-10700k",
+      "name": "Intel Core i7-10700K",
+      "aliases": ["Core i7 10700K", "i7-10700K"],
+      "performanceIndex": 10800
+    },
+    {
+      "id": "cpu-intel-core-i3-10100",
+      "name": "Intel Core i3-10100",
+      "aliases": ["Core i3 10100", "i3-10100"],
+      "performanceIndex": 7500
+    },
+    {
+      "id": "cpu-intel-core-i3-10300",
+      "name": "Intel Core i3-10300",
+      "aliases": ["Core i3 10300", "i3-10300"],
+      "performanceIndex": 7700
+    },
+    {
+      "id": "cpu-intel-core-i5-11400",
+      "name": "Intel Core i5-11400",
+      "aliases": ["Core i5 11400", "i5-11400"],
+      "performanceIndex": 10000
+    },
+    {
+      "id": "cpu-intel-core-i5-11600k",
+      "name": "Intel Core i5-11600K",
+      "aliases": ["Core i5 11600K", "i5-11600K"],
+      "performanceIndex": 10500
+    },
+    {
+      "id": "cpu-intel-core-i7-11700",
+      "name": "Intel Core i7-11700",
+      "aliases": ["Core i7 11700", "i7-11700"],
+      "performanceIndex": 11200
+    },
+    {
+      "id": "cpu-intel-core-i7-11700k",
+      "name": "Intel Core i7-11700K",
+      "aliases": ["Core i7 11700K", "i7-11700K"],
+      "performanceIndex": 11500
+    },
+    {
+      "id": "cpu-intel-core-i3-12100",
+      "name": "Intel Core i3-12100",
+      "aliases": ["Core i3 12100", "i3-12100"],
+      "performanceIndex": 8500
+    },
+    {
+      "id": "cpu-intel-core-i3-12300",
+      "name": "Intel Core i3-12300",
+      "aliases": ["Core i3 12300", "i3-12300"],
+      "performanceIndex": 8700
+    },
+    {
+      "id": "cpu-intel-core-i5-12400",
+      "name": "Intel Core i5-12400",
+      "aliases": ["Core i5 12400", "i5-12400"],
+      "performanceIndex": 11000
+    },
+    {
+      "id": "cpu-intel-core-i5-12600",
+      "name": "Intel Core i5-12600",
+      "aliases": ["Core i5 12600", "i5-12600"],
+      "performanceIndex": 11300
+    },
+    {
+      "id": "cpu-intel-core-i5-12600k",
+      "name": "Intel Core i5-12600K",
+      "aliases": ["Core i5 12600K", "i5-12600K"],
+      "performanceIndex": 11800
+    },
+    {
+      "id": "cpu-intel-core-i7-12700",
+      "name": "Intel Core i7-12700",
+      "aliases": ["Core i7 12700", "i7-12700"],
+      "performanceIndex": 12500
+    },
+    {
+      "id": "cpu-intel-core-i7-12700k",
+      "name": "Intel Core i7-12700K",
+      "aliases": ["Core i7 12700K", "i7-12700K"],
+      "performanceIndex": 13000
+    },
+    {
+      "id": "cpu-intel-core-i9-12900",
+      "name": "Intel Core i9-12900",
+      "aliases": ["Core i9 12900", "i9-12900"],
+      "performanceIndex": 14000
+    },
+    {
+      "id": "cpu-intel-core-i9-12900k",
+      "name": "Intel Core i9-12900K",
+      "aliases": ["Core i9 12900K", "i9-12900K"],
+      "performanceIndex": 14500
+    },
+    {
+      "id": "cpu-intel-core-i3-13100",
+      "name": "Intel Core i3-13100",
+      "aliases": ["Core i3 13100", "i3-13100"],
+      "performanceIndex": 9000
+    },
+    {
+      "id": "cpu-intel-core-i5-13400",
+      "name": "Intel Core i5-13400",
+      "aliases": ["Core i5 13400", "i5-13400"],
+      "performanceIndex": 11500
+    },
+    {
+      "id": "cpu-intel-core-i5-13600",
+      "name": "Intel Core i5-13600",
+      "aliases": ["Core i5 13600", "i5-13600"],
+      "performanceIndex": 12000
+    },
+    {
+      "id": "cpu-intel-core-i5-13600k",
+      "name": "Intel Core i5-13600K",
+      "aliases": ["Core i5 13600K", "i5-13600K"],
+      "performanceIndex": 12500
+    },
+    {
+      "id": "cpu-intel-core-i7-13700",
+      "name": "Intel Core i7-13700",
+      "aliases": ["Core i7 13700", "i7-13700"],
+      "performanceIndex": 13200
+    },
+    {
+      "id": "cpu-intel-core-i7-13700k",
+      "name": "Intel Core i7-13700K",
+      "aliases": ["Core i7 13700K", "i7-13700K"],
+      "performanceIndex": 13800
+    },
+    {
+      "id": "cpu-amd-athlon-64",
+      "name": "AMD Athlon 64",
+      "aliases": ["Athlon 64"],
+      "performanceIndex": 700
+    },
+    {
+      "id": "cpu-amd-phenom-ii-x4",
+      "name": "AMD Phenom II X4",
+      "aliases": ["Phenom II X4"],
+      "performanceIndex": 2000
+    },
+    {
+      "id": "cpu-amd-ryzen-3-1200",
+      "name": "AMD Ryzen 3 1200",
+      "aliases": ["Ryzen 3 1200", "R3 1200"],
+      "performanceIndex": 4800
+    },
+    {
+      "id": "cpu-amd-ryzen-3-1300x",
+      "name": "AMD Ryzen 3 1300X",
+      "aliases": ["Ryzen 3 1300X", "R3 1300X"],
+      "performanceIndex": 5000
+    },
+    {
+      "id": "cpu-amd-ryzen-5-1400",
+      "name": "AMD Ryzen 5 1400",
+      "aliases": ["Ryzen 5 1400", "R5 1400"],
+      "performanceIndex": 5500
+    },
+    {
+      "id": "cpu-amd-ryzen-5-1600",
+      "name": "AMD Ryzen 5 1600",
+      "aliases": ["Ryzen 5 1600", "R5 1600"],
+      "performanceIndex": 6500
+    },
+    {
+      "id": "cpu-amd-ryzen-5-2600",
+      "name": "AMD Ryzen 5 2600",
+      "aliases": ["Ryzen 5 2600", "R5 2600"],
+      "performanceIndex": 7500
+    },
+    {
+      "id": "cpu-amd-ryzen-5-3600",
+      "name": "AMD Ryzen 5 3600",
+      "aliases": ["Ryzen 5 3600", "R5 3600"],
+      "performanceIndex": 9000
+    },
+    {
+      "id": "cpu-amd-ryzen-5-5500",
+      "name": "AMD Ryzen 5 5500",
+      "aliases": ["Ryzen 5 5500", "R5 5500"],
+      "performanceIndex": 9500
+    },
+    {
+      "id": "cpu-amd-ryzen-5-5600",
+      "name": "AMD Ryzen 5 5600",
+      "aliases": ["Ryzen 5 5600", "R5 5600"],
+      "performanceIndex": 10500
+    },
+    {
+      "id": "cpu-amd-ryzen-5-5600x",
+      "name": "AMD Ryzen 5 5600X",
+      "aliases": ["Ryzen 5 5600X", "R5 5600X"],
+      "performanceIndex": 10800
+    },
+    {
+      "id": "cpu-amd-ryzen-7-5700",
+      "name": "AMD Ryzen 7 5700",
+      "aliases": ["Ryzen 7 5700", "R7 5700"],
+      "performanceIndex": 11500
+    },
+    {
+      "id": "cpu-amd-ryzen-7-5700x",
+      "name": "AMD Ryzen 7 5700X",
+      "aliases": ["Ryzen 7 5700X", "R7 5700X"],
+      "performanceIndex": 11800
+    },
+    {
+      "id": "cpu-amd-ryzen-7-5800x",
+      "name": "AMD Ryzen 7 5800X",
+      "aliases": ["Ryzen 7 5800X", "R7 5800X"],
+      "performanceIndex": 12200
+    },
+    {
+      "id": "cpu-amd-ryzen-9-5900x",
+      "name": "AMD Ryzen 9 5900X",
+      "aliases": ["Ryzen 9 5900X", "R9 5900X"],
+      "performanceIndex": 14000
+    }
+  ]
+}
